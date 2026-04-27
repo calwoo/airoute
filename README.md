@@ -15,9 +15,7 @@ airoute init                       # create ~/.airoute/config.yaml
 Requires Go 1.21+.
 
 ```bash
-git clone https://github.com/calvinwoo/airoute
-cd airoute
-go install .
+go install github.com/calwoo/airoute@latest
 ```
 
 Add `~/go/bin` to your PATH if it isn't already:
