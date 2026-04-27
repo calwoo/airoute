@@ -37,15 +37,6 @@ airoute openrouter-sonnet
 
 When you run `airoute <route>`, it replaces the current process with `claude` — no background process left behind, signals pass through cleanly.
 
-### Run any command with a route's env vars
-
-```bash
-airoute deepinfra-qwen -- npm run test
-# Runs npm test with the route's API endpoint and key injected.
-```
-
-Useful for scripts, CI steps, or any tooling that reads `ANTHROPIC_*` env vars.
-
 ### Export vars into the current shell
 
 ```bash
@@ -60,14 +51,6 @@ function air() { eval $(airoute env "$1"); }
 air deepinfra-qwen
 claude
 ```
-
-### Print env vars (dry run)
-
-```bash
-airoute env deepinfra-qwen --no-eval
-```
-
-Shows what `buildEnv` would set without executing anything. Handy for debugging.
 
 ### List configured routes
 
