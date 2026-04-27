@@ -1,4 +1,4 @@
-module github.com/calvinwoo/airoute
+module github.com/calwoo/airoute
 
 go 1.26.2
 
