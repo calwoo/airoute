@@ -1,0 +1,81 @@
+# Example airoute config — copy to ~/.airoute/config.yaml and fill in your keys.
+#
+# Run "airoute init" to generate this file automatically.
+
+routes:
+
+  # --- Direct Anthropic ---
+  anthropic:
+    base_url: https://api.anthropic.com
+    model: claude-sonnet-4-6
+    api_key_env: ANTHROPIC_API_KEY
+    tier: sonnet
+
+  # --- OpenRouter ---
+  # Supports hundreds of models via a single API key.
+  # https://openrouter.ai/models
+  openrouter-sonnet:
+    base_url: https://openrouter.ai/api
+    model: anthropic/claude-sonnet-4-6
+    api_key_env: OPENROUTER_API_KEY
+    clear_api_key: true
+    tier: sonnet
+
+  openrouter-opus:
+    base_url: https://openrouter.ai/api
+    model: anthropic/claude-opus-4-5
+    api_key_env: OPENROUTER_API_KEY
+    clear_api_key: true
+    tier: opus
+
+  openrouter-deepseek:
+    base_url: https://openrouter.ai/api
+    model: deepseek/deepseek-r1
+    api_key_env: OPENROUTER_API_KEY
+    clear_api_key: true
+    tier: sonnet
+
+  # --- DeepInfra ---
+  # https://deepinfra.com/models
+  deepinfra-qwen:
+    base_url: https://api.deepinfra.com/anthropic
+    model: Qwen/Qwen3-30B-A3B
+    api_key_env: DEEPINFRA_TOKEN
+    clear_api_key: true
+    tier: sonnet
+
+  deepinfra-deepseek:
+    base_url: https://api.deepinfra.com/anthropic
+    model: deepseek-ai/DeepSeek-V3-0324
+    api_key_env: DEEPINFRA_TOKEN
+    clear_api_key: true
+    tier: sonnet
+
+  # --- Fireworks ---
+  # https://fireworks.ai/models
+  fireworks-llama:
+    base_url: https://api.fireworks.ai/inference
+    model: accounts/fireworks/models/llama-v3p1-70b-instruct
+    api_key_env: FIREWORKS_API_KEY
+    clear_api_key: true
+    tier: sonnet
+
+  # --- Local (LM Studio) ---
+  # Start LM Studio and enable the local server before using this route.
+  # https://lmstudio.ai
+  local-lmstudio:
+    base_url: http://localhost:1234
+    model: lmstudio-community/qwen2.5-coder-7b
+    api_key_env: ""
+    clear_api_key: true
+    tier: sonnet
+
+  # --- Local (Ollama) ---
+  # Run "ollama serve" before using this route.
+  # https://ollama.com
+  local-ollama:
+    base_url: http://localhost:11434
+    model: qwen2.5-coder:7b
+    api_key_env: ""
+    clear_api_key: true
+    tier: sonnet
