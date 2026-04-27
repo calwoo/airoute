@@ -45,7 +45,18 @@ func main() {
 func cmdInit() *cobra.Command {
 	return &cobra.Command{
 		Use:   "init",
-		Short: "Create ~/.airoute/config.yaml with example routes",
+		Short: "Create ~/.airoute/config.yaml",
+		Long: `Create ~/.airoute/config.yaml with a starter route.
+
+Each route in the config supports the following fields:
+
+  base_url      (required) API endpoint URL
+  model         (required) model ID string for the provider
+  api_key_env   name of the shell env var holding your API key ("" for none)
+  clear_api_key set ANTHROPIC_API_KEY="" — required for non-Anthropic providers
+  tier          opus | sonnet | haiku — sets ANTHROPIC_DEFAULT_{TIER}_MODEL
+
+See examples/config.yaml in the repo for provider-specific examples.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return doInit()
 		},
