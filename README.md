@@ -75,7 +75,3 @@ function air() { eval $(airoute env "$1"); }
 air deepinfra-qwen
 claude
 ```
-
-## Note on pipes
-
-`airoute <route> | claude` does **not** work — shell pipes connect stdout to stdin and cannot inject environment variables into the receiving process. Use `airoute <route>` directly instead.
