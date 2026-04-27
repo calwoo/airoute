@@ -25,6 +25,58 @@ echo 'export PATH="$PATH:$(go env GOPATH)/bin"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
+## Usage
+
+### Start Claude with a route
+
+```bash
+airoute openrouter-sonnet
+# Launches claude with ANTHROPIC_BASE_URL, ANTHROPIC_MODEL,
+# and ANTHROPIC_AUTH_TOKEN set from the route config.
+```
+
+When you run `airoute <route>`, it replaces the current process with `claude` — no background process left behind, signals pass through cleanly.
+
+### Run any command with a route's env vars
+
+```bash
+airoute deepinfra-qwen -- npm run test
+# Runs npm test with the route's API endpoint and key injected.
+```
+
+Useful for scripts, CI steps, or any tooling that reads `ANTHROPIC_*` env vars.
+
+### Export vars into the current shell
+
+```bash
+eval $(airoute env openrouter-sonnet)
+claude
+```
+
+This sets the route's env vars in your current shell session rather than spawning a subprocess. Combine with a shell function for a shorthand:
+
+```bash
+function air() { eval $(airoute env "$1"); }
+air deepinfra-qwen
+claude
+```
+
+### Print env vars (dry run)
+
+```bash
+airoute env deepinfra-qwen --no-eval
+```
+
+Shows what `buildEnv` would set without executing anything. Handy for debugging.
+
+### List configured routes
+
+```bash
+airoute list
+```
+
+Displays every route, its endpoint URL, model, key source, and tier.
+
 ## Setup
 
 ```bash
@@ -61,15 +113,3 @@ export OPENROUTER_API_KEY=sk-or-...
 export DEEPINFRA_TOKEN=...
 ```
 
-## Shell alias (optional)
-
-For an eval-based workflow that sets vars in your current shell:
-
-```bash
-# ~/.zshrc
-function air() { eval $(airoute env "$1"); }
-
-# Usage
-air deepinfra-qwen
-claude
-```
